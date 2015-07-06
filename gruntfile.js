@@ -5,7 +5,7 @@ module.exports = function(grunt) {
       options: {
         transform: [
           ['reactify'],
-          ['literalify', { react: 'window.React' }]
+          ['literalify', { react: 'window.React', i18next: 'window.i18n' }]
         ]
       },
       bundle: {

@@ -1,6 +1,7 @@
 require('node-jsx').install({ extension: '.jsx'} );
 
 var _ = require('underscore');
+var i18n = require('./i18n');
 
 var React = require('react');
 var FilterableRestaurantList = React.createFactory(require('./filterable-restaurant-list.jsx'))
@@ -9,6 +10,7 @@ var express = require('express');
 var app = express();
 app.set('view engine', 'jade');
 app.use(express.static('public'));
+app.use('/locales', express.static('locales'));
 
 var data = {
     location: {
@@ -42,6 +44,10 @@ var data = {
 };
 
 app.get('/', function (req, res) {
+  data.lng = req.query.lng || 'en';
+
+  i18n.setLng(data.lng);
+
   var html = React.renderToString(FilterableRestaurantList({ 
     initialRestaurants: data.restaurants,
     initialLocation: data.location,

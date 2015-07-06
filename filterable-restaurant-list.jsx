@@ -1,6 +1,5 @@
-// Pagination
-
 var React = require('react');
+var i18n = require('./i18n');
 
 var LocationFilterItem = React.createClass({
     handleClick: function (e) {
@@ -53,13 +52,15 @@ var RestaurantListHeader = React.createClass({
         if (this.props.location.macro) {
             locationName = locationName + ' - ' + this.props.location.macro.name;
 
-            seeAll = <a href='#' onClick={this.handleClick}>See all x</a>
+            seeAll = <a href='#' onClick={this.handleClick}>{i18n.t('see-all')}</a>
         }
+
+        var restaurantCount = i18n.t('restaurant-count', { count: this.props.restaurants.length });
 
         return (
             <div>
                 <h4>
-                    <span>{this.props.restaurants.length} Restaurants in</span>
+                    <span>{restaurantCount}</span>
                     <span>{locationName}</span>
                     {seeAll}
                 </h4>
