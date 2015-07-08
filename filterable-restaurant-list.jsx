@@ -10,7 +10,7 @@ var LocationFilterItem = React.createClass({
     render: function () {
         return (
             <li>
-                <a href='#' onClick={this.handleClick.bind(this, this.props.macro.id)}>{this.props.macro.name}</a>
+                <a href='#' onClick={(e) => this.handleClick(this.props.macro.id, e)}>{this.props.macro.name}</a>
             </li>
         );
     }
