@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     browserify: {
       options: {
         transform: [
-          ['reactify'],
+          ['babelify'],
           ['literalify', { react: 'window.React', i18next: 'window.i18n' }]
         ]
       },
