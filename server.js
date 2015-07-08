@@ -1,4 +1,4 @@
-require('node-jsx').install({ extension: '.jsx'} );
+require("babel/register");
 
 var _ = require('underscore');
 var i18n = require('./i18n');
