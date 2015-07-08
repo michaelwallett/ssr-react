@@ -2,18 +2,15 @@ var React = require('react');
 var i18n = require('./i18n');
 
 var LocationFilterItem = React.createClass({
-    handleClick: function (e) {
+    handleClick: function (macroId, e) {
         e.preventDefault();
-
-        var macroId = this.refs.locationFilter.getDOMNode().dataset.id;
-
         this.props.onLocationSelection(macroId);
     },
 
     render: function () {
         return (
             <li>
-                <a href='#' data-id={this.props.macro.id} onClick={this.handleClick} ref='locationFilter'>{this.props.macro.name}</a>
+                <a href='#' onClick={this.handleClick.bind(this, this.props.macro.id)}>{this.props.macro.name}</a>
             </li>
         );
     }
