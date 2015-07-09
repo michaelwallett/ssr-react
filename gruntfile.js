@@ -1,22 +1,14 @@
+var devConfig = require('./config/webpack.config.dev');
+
 module.exports = function(grunt) {
 
   grunt.initConfig({
-    browserify: {
-      options: {
-        transform: [
-          ['babelify'],
-          ['literalify', { react: 'window.React', i18next: 'window.i18n' }]
-        ]
-      },
-      bundle: {
-        src: './browser.js',
-        dest: './public/bundle.js'
-      }
+    webpack: {
+      dev: devConfig
     }
   });
 
-  grunt.loadNpmTasks('grunt-browserify');
+  grunt.loadNpmTasks("grunt-webpack");
 
-  grunt.registerTask('default', ['browserify:bundle']);
-
+  grunt.registerTask('default', ['webpack:dev']);
 };

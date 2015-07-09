@@ -1,7 +1,11 @@
 var React = require('react');
-var i18n = require('./i18n');
+var ReactIntl = require('react-intl');
+var FormattedMessage  = ReactIntl.FormattedMessage;
+var IntlMixin = ReactIntl.IntlMixin;
 
 var LocationFilterItem = React.createClass({
+    mixins: [IntlMixin],
+
     handleClick: function (macroId, e) {
         e.preventDefault();
         this.props.onLocationSelection(macroId);
@@ -17,6 +21,8 @@ var LocationFilterItem = React.createClass({
 });
 
 var LocationFilterList = React.createClass({
+    mixins: [IntlMixin],
+
     render: function () {
         var onLocationSelection = this.props.onLocationSelection;
 
@@ -36,6 +42,8 @@ var LocationFilterList = React.createClass({
 });
 
 var RestaurantListHeader = React.createClass({
+    mixins: [IntlMixin],
+
     handleClick: function (e) {
         e.preventDefault();
 
@@ -49,10 +57,14 @@ var RestaurantListHeader = React.createClass({
         if (this.props.location.macro) {
             locationName = locationName + ' - ' + this.props.location.macro.name;
 
-            seeAll = <a href='#' onClick={this.handleClick}>{i18n.t('see-all')}</a>
+            seeAll = <a href='#' onClick={this.handleClick}>
+                        <FormattedMessage message={this.getIntlMessage('seeAll')} />
+                     </a>
         }
 
-        var restaurantCount = i18n.t('restaurant-count', { count: this.props.restaurants.length });
+        var restaurantCount = <FormattedMessage
+                                message={this.getIntlMessage('restaurantCount')}
+                                count={this.props.restaurants.length} />;  
 
         return (
             <div>
@@ -67,6 +79,8 @@ var RestaurantListHeader = React.createClass({
 });
 
 var RestaurantListItem = React.createClass({
+    mixins: [IntlMixin],
+
     render: function () {
         return (
             <div>
@@ -77,6 +91,8 @@ var RestaurantListItem = React.createClass({
 });
 
 var RestaurantListResults = React.createClass({
+    mixins: [IntlMixin],
+
     render: function () {
         var className = this.props.loaded ? undefined : 'spinner';
 
@@ -93,6 +109,8 @@ var RestaurantListResults = React.createClass({
 });
 
 var FilterableRestaurantList = React.createClass({
+  mixins: [IntlMixin],
+
   getInitialState: function () {
     return {
         restaurants: this.props.initialRestaurants,
