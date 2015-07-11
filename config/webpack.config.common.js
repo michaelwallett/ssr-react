@@ -9,6 +9,9 @@ module.exports = {
         path: './public/generated/js',
         filename: 'bundle.js'
     },
+    externals: {
+        "jquery": "$"
+    },
     module: {
         loaders: [
             { test: /\.jsx$/, exclude: /node_modules/, loader: require.resolve('babel-loader') }
