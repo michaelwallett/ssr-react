@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactIntl = require('react-intl');
-var FormattedMessage  = ReactIntl.FormattedMessage;
+var $ = require('jquery');
+var FormattedMessage = ReactIntl.FormattedMessage;
 var IntlMixin = ReactIntl.IntlMixin;
 
 var LocationFilterItem = React.createClass({
@@ -27,7 +28,7 @@ var LocationFilterList = React.createClass({
         var onLocationSelection = this.props.onLocationSelection;
 
         var filters = this.props.macros.map(function (macro) {
-            return <LocationFilterItem macro={macro} key={macro.id} onLocationSelection={onLocationSelection} />
+            return (<LocationFilterItem macro={macro} key={macro.id} onLocationSelection={onLocationSelection} />);
         });
 
         return (
@@ -52,19 +53,19 @@ var RestaurantListHeader = React.createClass({
 
     render: function () {
         var locationName = this.props.location.metro.name;
-        var seeAll = undefined;
+        var seeAll;
 
         if (this.props.location.macro) {
             locationName = locationName + ' - ' + this.props.location.macro.name;
 
-            seeAll = <a href='#' onClick={this.handleClick}>
+            seeAll = (<a href='#' onClick={this.handleClick}>
                         <FormattedMessage message={this.getIntlMessage('seeAll')} />
-                     </a>
+                     </a>);
         }
 
-        var restaurantCount = <FormattedMessage
+        var restaurantCount = (<FormattedMessage
                                 message={this.getIntlMessage('restaurantCount')}
-                                count={this.props.restaurants.length} />;  
+                                count={this.props.restaurants.length} />);
 
         return (
             <div>
@@ -97,7 +98,7 @@ var RestaurantListResults = React.createClass({
         var className = this.props.loaded ? undefined : 'spinner';
 
         var results = this.props.restaurants.map(function (restaurant) {
-            return <RestaurantListItem restaurant={restaurant} key={restaurant.id} />
+            return (<RestaurantListItem restaurant={restaurant} key={restaurant.id} />);
         });
 
         return (

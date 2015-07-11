@@ -13,6 +13,9 @@ module.exports = {
         "jquery": "$"
     },
     module: {
+        preLoaders: [
+            { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: require.resolve('eslint-loader') }
+        ],
         loaders: [
             { test: /\.jsx$/, exclude: /node_modules/, loader: require.resolve('babel-loader') }
         ]
