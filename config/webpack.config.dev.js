@@ -1,28 +1,8 @@
-var webpack = require('webpack');
+var webpack = require('webpack'),
+    commonConfig = require('./webpack.config.common');
 
-module.exports = {
-    resolve: {
-        extensions: ['', '.js', '.jsx']
-    },
-    entry: './browser.js',
-    output: {
-        path: './public/generated/js',
-        filename: 'bundle.js'
-    },
-    module: {
-        loaders: [
-            { test: /\.jsx$/, exclude: /node_modules/, loader: require.resolve('babel-loader') }
-        ]
-    },
-    plugins: [
-        // Protects against multiple React installs when npm linking
-        new webpack.NormalModuleReplacementPlugin(/^react?$/, require.resolve('react')),
-        new webpack.NormalModuleReplacementPlugin(/^react(\/addons)?$/, require.resolve('react/addons')),
-        new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.UglifyJsPlugin()
-    ],
-    stats: {
-        colors: true
-    },
-    devtool: 'source-map'
-};
+var devConfig = Object.create(commonConfig);
+devConfig.devtool = 'sourcemap';
+devConfig.debug = true;
+
+module.exports = devConfig;
