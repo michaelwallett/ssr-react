@@ -4,7 +4,7 @@ require('intl');
 var _ = require('underscore');
 
 var React = require('react');
-var FilterableRestaurantList = React.createFactory(require('./filterable-restaurant-list.jsx'))
+var FilterableRestaurantList = React.createFactory(require('./components/filterable-restaurant-list.jsx'))
 
 var express = require('express');
 var app = express();
