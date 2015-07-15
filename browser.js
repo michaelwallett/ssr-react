@@ -1,6 +1,6 @@
 var React = require('react');
 
-var FilterableRestaurantList = React.createFactory(require('./filterable-restaurant-list'));
+var FilterableRestaurantList = React.createFactory(require('./components/filterable-restaurant-list'));
 
 var props = {
     initialRestaurants: window.data.restaurants,
